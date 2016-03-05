@@ -6,9 +6,9 @@ $(document).ready(function(e) {
 
 function addImageToScreenOnClick() {
   // Add image to screen on click.
-  screen().click(function(e) {
+  screen().click(function(clickEvent) {
       var $newImg = createImage();
-      $newImg.css(createAbsolutePositionCss(e));
+      $newImg.css(createAbsolutePositionCss(clickEvent));
       addToScreen($newImg);
   });
 }
@@ -19,8 +19,8 @@ function followMouseWithImage() {
   addToScreen($newImg);
 
   // On mouse move follow pointer.
-  screen().mousemove(function(e) {
-    $newImg.css(createAbsolutePositionCss(e));
+  screen().mousemove(function(mouseMoveEvent) {
+    $newImg.css(createAbsolutePositionCss(mouseMoveEvent));
     $newImg.show();
   });
 }
@@ -39,12 +39,12 @@ function addToScreen(objectToAdd) {
   screen().append(objectToAdd);
 }
 
-function createAbsolutePositionCss(e) {
+function createAbsolutePositionCss(event) {
   var posX = screen().position().left;
   var posY = screen().position().top;
   return {
-    top: (e.pageY - posY) - 50,
-    left: (e.pageX - posX) - 62,
+    top: (event.pageY - posY) - 50,
+    left: (event.pageX - posX) - 62,
     position:'absolute'
   };
 }
